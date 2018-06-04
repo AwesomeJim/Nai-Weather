@@ -33,16 +33,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     private String[] mWeatherData;
 
-
-    // COMPLETED (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
     /*
      * An on-click handler that we've defined to make it easy for an Activity to interface with
      * our RecyclerView
      */
     private final ForecastAdapterOnClickHandler mClickHandler;
 
-    // COMPLETED (1) Add an interface called ForecastAdapterOnClickHandler
-    // COMPLETED (2) Within that interface, define a void method that access a String as a parameter
     /**
      * The interface that receives onClick messages.
      */
@@ -50,7 +46,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         void onClick(String weatherForDay);
     }
 
-    // COMPLETED (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
     /**
      * Creates a ForecastAdapter.
      *
@@ -61,7 +56,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         mClickHandler = clickHandler;
     }
 
-    // COMPLETED (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
@@ -71,11 +65,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
-            // COMPLETED (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
             view.setOnClickListener(this);
         }
-
-        // COMPLETED (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
 
         /**
          * This gets called by the child views during a click.
@@ -90,13 +81,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         }
     }
 
-    public ForecastAdapter() {
-
-    }
-
-    // COMPLETED (24) Override onCreateViewHolder
-    // COMPLETED (25) Within onCreateViewHolder, inflate the list item xml into a view
-    // COMPLETED (26) Within onCreateViewHolder, return a new ForecastAdapterViewHolder with the above view passed in as a parameter
     /**
      * This gets called when each new ViewHolder is created. This happens when the RecyclerView
      * is laid out. Enough ViewHolders will be created to fill the screen and allow for scrolling.
@@ -119,8 +103,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return new ForecastAdapterViewHolder(view);
     }
 
-    // COMPLETED (27) Override onBindViewHolder
-    // COMPLETED (28) Set the text of the TextView to the weather for this list item's position
     /**
      * OnBindViewHolder is called by the RecyclerView to display the data at the specified
      * position. In this method, we update the contents of the ViewHolder to display the weather
@@ -137,8 +119,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         forecastAdapterViewHolder.mWeatherTextView.setText(weatherForThisDay);
     }
 
-    // COMPLETED (29) Override getItemCount
-    // COMPLETED (30) Return 0 if mWeatherData is null, or the size of mWeatherData if it is not null
     /**
      * This method simply returns the number of items to display. It is used behind the scenes
      * to help layout our Views and for animations.
@@ -151,8 +131,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return mWeatherData.length;
     }
 
-    // COMPLETED (31) Create a setWeatherData method that saves the weatherData to mWeatherData
-    // COMPLETED (32) After you save mWeatherData, call notifyDataSetChanged
     /**
      * This method is used to set the weather forecast on a ForecastAdapter if we've already
      * created one. This is handy when we get new data from the web but don't want to create a
